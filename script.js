@@ -7,7 +7,6 @@ const daysTag = document.querySelector(".days"),
       saveEventBtn = document.getElementById('save-event'),
       closeModalBtn = document.querySelector('.close');
 
-
 let date = new Date(),
     currYear = date.getFullYear(),
     currMonth = date.getMonth(),
