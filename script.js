@@ -7,13 +7,12 @@ const daysTag = document.querySelector(".days"),
       saveEventBtn = document.getElementById('save-event'),
       closeModalBtn = document.querySelector('.close');
 
-// getting new date, current year and month
+
 let date = new Date(),
     currYear = date.getFullYear(),
     currMonth = date.getMonth(),
     selectedDate = null;
 
-// storing full name of all months in array
 const months = ["January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"];
 
@@ -67,7 +66,6 @@ prevNextIcon.forEach(icon => {
     });
 });
 
-// Save event to local storage
 saveEventBtn.addEventListener('click', () => {
     const eventText = eventInput.value;
     if (eventText) {
@@ -81,7 +79,6 @@ saveEventBtn.addEventListener('click', () => {
     }
 });
 
-// Close the modal
 closeModalBtn.addEventListener('click', () => {
     eventModal.style.display = 'none';
 });
