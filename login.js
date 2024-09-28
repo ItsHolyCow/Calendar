@@ -1,20 +1,34 @@
-const loginForm = document.getElementById('login-form');
-const loginButton = document.getElementById('login-btn');
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const errorMessageElement = document.getElementById('errorMessage');
 
-// Listen for form submission
-loginForm.addEventListener('submit', function(e) {
-  e.preventDefault(); // Prevent the page from reloading
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // In a real application, you should use a secure authentication method
+        // This is just a simple example and is not secure for production use
+        const storedPassword = localStorage.getItem(username);
+        
+        if (!storedPassword) {
+            showErrorMessage('User does not exist');
+        } else if (password === storedPassword) {
+            // Directly redirect to index.html without showing a success message
+            window.location.href = 'index.html';
+        } else {
+            showErrorMessage('Incorrect password');
+        }
+    });
 
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  // Save data in local storage
-  localStorage.setItem('userEmail', email);
-  localStorage.setItem('userPassword', password);
-
-  alert('Login details saved in local storage!');
-
-  window.location.href = 'index.html';
-
-  loginForm.reset();
+    function showErrorMessage(message) {
+        errorMessageElement.textContent = message;
+        errorMessageElement.style.display = 'block';
+        
+        // Optionally, hide the message after a few seconds
+        setTimeout(() => {
+            errorMessageElement.style.display = 'none';
+        }, 3000);
+    }
 });
